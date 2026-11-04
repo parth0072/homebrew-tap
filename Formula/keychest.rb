@@ -1,8 +1,8 @@
 class Keychest < Formula
   desc "Generate obfuscated Swift secrets from Keychain, 1Password or env vars"
   homepage "https://github.com/parth0072/keychest"
-  url "https://github.com/parth0072/keychest/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "0075a7ff44e5ba55084c319c389f4f02f23876bbe2e595697fde8f46403351b5"
+  url "https://github.com/parth0072/keychest/archive/refs/tags/v1.0.0.tar.gz"
+  sha256 "511bd263f9c63162dccb98b2cf455c656b5bd669d254262c5d1fbe7d78a1f8b2"
   license "MIT"
   head "https://github.com/parth0072/keychest.git", branch: "main"
 
