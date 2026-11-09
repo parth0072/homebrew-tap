@@ -1,8 +1,8 @@
 class Keychest < Formula
   desc "Generate obfuscated Swift secrets from Keychain, 1Password or env vars"
   homepage "https://github.com/parth0072/keychest"
-  url "https://github.com/parth0072/keychest/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "511bd263f9c63162dccb98b2cf455c656b5bd669d254262c5d1fbe7d78a1f8b2"
+  url "https://github.com/parth0072/keychest/archive/refs/tags/v1.1.0.tar.gz"
+  sha256 "27d0d618a9678fce2d77950d26f8cf73c8cad9c7a4c1caad0720d82797bf913f"
   license "MIT"
   head "https://github.com/parth0072/keychest.git", branch: "main"
 
@@ -25,10 +25,15 @@ class Keychest < Formula
 
     with_env("apiKeyDebug" => "brew-test-value") do
       system bin/"keychest", "generate"
+      system bin/"keychest", "generate", "--platforms", "kotlin"
     end
 
-    generated = testpath/"KeychestKeys/Sources/KeychestKeys/Secrets.swift"
-    assert_path_exists generated
-    refute_includes generated.read, "brew-test-value"
+    swift = testpath/"KeychestKeys/Sources/KeychestKeys/Secrets.swift"
+    assert_path_exists swift
+    refute_includes swift.read, "brew-test-value"
+
+    kotlin = testpath/"keychest-keys/src/main/kotlin/keychest/keys/Secrets.kt"
+    assert_path_exists kotlin
+    refute_includes kotlin.read, "brew-test-value"
   end
 end
