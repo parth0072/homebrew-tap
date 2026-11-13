@@ -1,17 +1,24 @@
 class Keychest < Formula
-  desc "Generate obfuscated Swift secrets from Keychain, 1Password or env vars"
+  desc "Generate obfuscated Swift and Kotlin secrets from Keychain, 1Password or env"
   homepage "https://github.com/parth0072/keychest"
-  url "https://github.com/parth0072/keychest/archive/refs/tags/v1.1.0.tar.gz"
-  sha256 "27d0d618a9678fce2d77950d26f8cf73c8cad9c7a4c1caad0720d82797bf913f"
+  url "https://github.com/parth0072/keychest/releases/download/v1.1.0/keychest-1.1.0-macos-universal.tar.gz"
+  sha256 "9d00a55b1fc69052029f843730c5866a92361f1ce226cfbaad024a7b873d0588"
   license "MIT"
-  head "https://github.com/parth0072/keychest.git", branch: "main"
 
-  depends_on xcode: ["15.0", :build]
-  depends_on :macos
+  # `brew install --HEAD` builds from source and needs Xcode; the release download does not.
+  head "https://github.com/parth0072/keychest.git", branch: "main" do
+    depends_on xcode: ["15.0", :build]
+  end
+
+  depends_on macos: :monterey
 
   def install
-    system "swift", "build", "--disable-sandbox", "--configuration", "release", "--product", "keychest"
-    bin.install ".build/release/keychest"
+    if build.head?
+      system "swift", "build", "--disable-sandbox", "--configuration", "release", "--product", "keychest"
+      bin.install ".build/release/keychest"
+    else
+      bin.install "keychest"
+    end
   end
 
   test do
