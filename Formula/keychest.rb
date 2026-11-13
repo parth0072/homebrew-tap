@@ -1,8 +1,8 @@
 class Keychest < Formula
   desc "Generate obfuscated Swift and Kotlin secrets from Keychain, 1Password or env"
   homepage "https://github.com/parth0072/keychest"
-  url "https://github.com/parth0072/keychest/releases/download/v1.1.0/keychest-1.1.0-macos-universal.tar.gz"
-  sha256 "9d00a55b1fc69052029f843730c5866a92361f1ce226cfbaad024a7b873d0588"
+  url "https://github.com/parth0072/keychest/releases/download/v1.2.0/keychest-1.2.0-macos-universal.tar.gz"
+  sha256 "6817ff5bfd7dcf50b04b3e11d48cce7d731b60c23f840a07d98a1c4dc9c14c16"
   license "MIT"
 
   # `brew install --HEAD` builds from source and needs Xcode; the release download does not.
